@@ -3,7 +3,8 @@
     "allow": [
       "Bash(bun add:*)",
       "Bash(bunx biome:*)",
-      "Bash(bunx create-next-app@latest:*)"
+      "Bash(bunx create-next-app@latest:*)",
+      "Bash(docker compose:*)"
     ],
     "deny": [],
     "ask": []
