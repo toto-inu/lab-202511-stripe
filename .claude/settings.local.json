@@ -4,7 +4,8 @@
       "Bash(bun add:*)",
       "Bash(bunx biome:*)",
       "Bash(bunx create-next-app@latest:*)",
-      "Bash(docker compose:*)"
+      "Bash(docker compose:*)",
+      "Bash(bun dev)"
     ],
     "deny": [],
     "ask": []
