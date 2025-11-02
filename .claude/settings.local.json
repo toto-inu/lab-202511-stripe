@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bun add:*)",
+      "Bash(bunx biome:*)",
+      "Bash(bunx create-next-app@latest:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
