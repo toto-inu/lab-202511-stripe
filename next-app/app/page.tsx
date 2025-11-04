@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 interface Product {
   id: string;
@@ -71,7 +72,7 @@ export default function Home() {
     return new Intl.NumberFormat('ja-JP', {
       style: 'currency',
       currency: currency.toUpperCase(),
-    }).format(price / 100);
+    }).format(price);
   };
 
   return (
@@ -81,9 +82,17 @@ export default function Home() {
           <h1 className="mb-4 text-4xl font-bold text-zinc-900 dark:text-zinc-50">
             Stripe Payment Test
           </h1>
-          <p className="text-lg text-zinc-600 dark:text-zinc-400">
+          <p className="mb-6 text-lg text-zinc-600 dark:text-zinc-400">
             Test Stripe integration with sample products
           </p>
+          <div className="flex justify-center gap-4">
+            <Link
+              href="/subscriptions"
+              className="rounded-full bg-zinc-900 px-6 py-3 text-sm font-medium text-zinc-50 transition-colors hover:bg-zinc-700 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-300"
+            >
+              View Subscription Plans →
+            </Link>
+          </div>
         </div>
 
         <div className="mb-8">

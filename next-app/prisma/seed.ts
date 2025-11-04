@@ -10,21 +10,21 @@ async function main() {
     {
       name: 'Basic Plan',
       description: 'Perfect for getting started',
-      price: 100000, // 1000 JPY in cents
+      price: 1000, 
       currency: 'jpy',
       active: true,
     },
     {
       name: 'Pro Plan',
       description: 'Best for professionals',
-      price: 300000, // 3000 JPY in cents
+      price: 3000, 
       currency: 'jpy',
       active: true,
     },
     {
       name: 'Enterprise Plan',
       description: 'For large organizations',
-      price: 500000, // 5000 JPY in cents
+      price: 5000, 
       currency: 'jpy',
       active: true,
     },
@@ -35,6 +35,65 @@ async function main() {
       data: product,
     });
     console.log(`Created product: ${createdProduct.name}`);
+  }
+
+  // Create sample subscription plans
+  const subscriptionPlans = [
+    {
+      name: 'Basic Monthly',
+      description: 'Perfect for getting started',
+      price: 1000, 
+      currency: 'jpy',
+      interval: 'MONTH' as const,
+      active: true,
+    },
+    {
+      name: 'Pro Monthly',
+      description: 'Best for professionals',
+      price: 3000, 
+      currency: 'jpy',
+      interval: 'MONTH' as const,
+      active: true,
+    },
+    {
+      name: 'Enterprise Monthly',
+      description: 'For large organizations',
+      price: 5000, 
+      currency: 'jpy',
+      interval: 'MONTH' as const,
+      active: true,
+    },
+    {
+      name: 'Basic Yearly',
+      description: 'Perfect for getting started (save 20%)',
+      price: 9600, 
+      currency: 'jpy',
+      interval: 'YEAR' as const,
+      active: true,
+    },
+    {
+      name: 'Pro Yearly',
+      description: 'Best for professionals (save 20%)',
+      price: 28800, 
+      currency: 'jpy',
+      interval: 'YEAR' as const,
+      active: true,
+    },
+    {
+      name: 'Enterprise Yearly',
+      description: 'For large organizations (save 20%)',
+      price: 48000, 
+      currency: 'jpy',
+      interval: 'YEAR' as const,
+      active: true,
+    },
+  ];
+
+  for (const plan of subscriptionPlans) {
+    const createdPlan = await prisma.subscriptionPlan.create({
+      data: plan,
+    });
+    console.log(`Created subscription plan: ${createdPlan.name}`);
   }
 
   console.log('Seeding finished.');

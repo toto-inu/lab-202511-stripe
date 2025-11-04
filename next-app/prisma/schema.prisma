@@ -69,3 +69,53 @@ enum PaymentStatus {
   FAILED
   CANCELLED
 }
+
+model SubscriptionPlan {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  price       Int      // Price in cents
+  currency    String   @default("jpy")
+  interval    BillingInterval @default(MONTH)
+  stripeProductId String? @unique
+  stripePriceId   String? @unique
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  subscriptions Subscription[]
+
+  @@map("subscription_plans")
+}
+
+model Subscription {
+  id                    String   @id @default(cuid())
+  planId                String
+  plan                  SubscriptionPlan @relation(fields: [planId], references: [id])
+  customerEmail         String
+  stripeCustomerId      String?
+  stripeSubscriptionId  String?  @unique
+  status                SubscriptionStatus @default(PENDING)
+  currentPeriodStart    DateTime?
+  currentPeriodEnd      DateTime?
+  cancelAtPeriodEnd     Boolean  @default(false)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@map("subscriptions")
+}
+
+enum BillingInterval {
+  MONTH
+  YEAR
+}
+
+enum SubscriptionStatus {
+  PENDING
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  UNPAID
+  INCOMPLETE
+  INCOMPLETE_EXPIRED
+  TRIALING
+}
